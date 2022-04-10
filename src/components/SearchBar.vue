@@ -1,7 +1,7 @@
 <template>
   <div class="search">
-    <input type="text" placeholder="Search for a recipe" />
-    <button @click="showModal = true">Add a new recipe</button>
+    <input type="text" v-model="consulta" placeholder="Search for a recipe" /><button v-show="vacio">Clear Search</button>
+    <button @click="showForm = true">Add a new recipe</button>
   </div>
 </template>
 <script>
@@ -12,6 +12,33 @@ export default defineComponent({
    components: {
    //RecipeForm,
  },
+ data() {
+  return {
+    vacio: false,
+    consulta: '',
+  }
+},
+ methods: {
+
+  /* Aquest mètode s'encarregarà d'emetre un esdeveniment show-form. S’haurà
+  d’executar quan es faci clic al botó “Add a new recipe”. */
+  showForm(){
+    this.$emit('showModal');
+  },
+  /* Aquest mètode s'encarregarà de buidar l'element input del camp de cerca.
+  S’haurà d’executar quan es faci clic al botó “Clear Search”. */
+  clearSearch(){
+    if(this.consulta != ''){
+      this.vacio= true;
+    }
+  },
+   /*Aquest mètode s'executarà cada vegada que es modifiqui l'element
+  input del camp de cerca (cada vegada que es teclegi una lletra). Emetrà un esdeveniment
+  'search' amb el contingut del camp de cerca */
+  search(newVal){
+    console.log(newVal);
+  },
+ }
 });
 </script>
 <style scoped>
