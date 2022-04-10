@@ -5,7 +5,7 @@
       <div class="recipe-form-header">
         <h2>Add a new recipe</h2>
         <div id="errores">
-          <p v-for="item in mensajeError" :key="item.id">{{ item }}</p>
+          <p>{{ mensajeError }}</p>
         </div>
         <button @click="closeForm">
           <img src="../assets/close-button.svg" alt="Close modal" />
@@ -96,9 +96,9 @@ export default defineComponent({
                     console.log("Indicaciones Vacio!!");
                     //Pinta en pantalla
                     var error = document.getElementById("errores");
-                    error.innerHTML += 'El título está vacío <br/>';
-                    error.innerHTML += 'Los ingredientes está vacío <br/>';
-                    error.innerHTML += 'Las indicaciones está vacío <br/>';
+                    error.innerHTML += 'The fields Title, ingredients and directions are required <br/>';
+                    //error.innerHTML += 'Los ingredientes está vacío <br/>';
+                    //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
                     this.recipe.push({
                         id: this.id, 
