@@ -6,7 +6,7 @@
     </div>
     <search-bar />
     <recipe-list :recipeList="recipeList" />
-    <recipe-form v-if="!showModal" />
+    <recipe-form v-if="showModal" @showForm="showForm"/>
     <p>{{data}}</p>
   </div>
 </template>

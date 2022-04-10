@@ -1,7 +1,7 @@
 <template>
   <div id="recipe-list" class="recipe-list">
     <div v-for="recipe in recipeList" :key="recipe.id">
-      <recipe :recipe="recipe" />
+      <recipe :recipe="recipe" @deleteRecipe="deleteRecipe"/>
     </div>
   </div>
 </template>

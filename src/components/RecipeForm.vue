@@ -100,7 +100,7 @@ export default defineComponent({
                     error.innerHTML += '<br/>';
                     //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
-                    this.recipe.push({
+                    this.recipeList.push({
                         id: this.id, 
                         title: this.title, 
                         image: this.image, 
@@ -117,7 +117,7 @@ export default defineComponent({
             el símbol X. S'encarregarà de:
                 ○ Emetre un esdeveniment close-modal */
             closeForm(){
-                this.$emit('close');
+                this.$emit('close', false);
             }
         },
 });

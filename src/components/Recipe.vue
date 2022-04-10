@@ -57,7 +57,7 @@ export default defineComponent({
       ○ delete-recipe(id): Esdeveniment encarregat d'informar que s'ha eliminat 
         una recepta. Indica l'identificador id de la recepta com a paràmetre.*/
     deleteRecipe () {
-      this.$emit("delete-recipe", this.recipe.id);
+      this.$emit("deleteRecipe", this.recipe.id);
       console.log("Desde Recipe: "+this.recipe.id);
     } 
 },  
