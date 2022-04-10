@@ -22,9 +22,11 @@ export default defineComponent({
   align-items: center;
   border-bottom: 1px solid #ccc;
   margin-bottom: 25px;
+  justify-content: space-between;
 }
 .search input {
   width: 100%;
+  width: 500px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
