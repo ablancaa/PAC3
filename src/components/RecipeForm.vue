@@ -7,7 +7,7 @@
         <div id="errores">
           <p v-for="item in mensajeError" :key="item.id">{{ item }}</p>
         </div>
-        <button @close="closeForm">
+        <button @click="closeForm">
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
