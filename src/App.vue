@@ -7,6 +7,7 @@
     <search-bar />
     <recipe-list :recipeList="recipeList" />
     <recipe-form v-if="showModal" />
+    <p>{{data}}</p>
   </div>
 </template>
 
@@ -62,6 +63,32 @@ export default defineComponent({
     ],
     showModal: false,
   }),
+  computed:{
+    datalistcom(){
+      return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1)
+    }
+  },
+   methods: {
+   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList.
+    deleteRecipe(recipeId){},} Elimina l'objecte de la llista recipeList l'identificador id és el
+    passat per paràmetre.*/
+    addRecipe(recipe){
+      console.log.apply(recipe);
+    },
+    
+    /*Modifica l'estat del paràmetre showModal al seu invers.*/
+    toggleForm(){},
+    
+    /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
+    la informació rebuda a l'esdeveniment.*/
+    setSearchTerm(){},
+    
+    /*Funció que:
+    ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
+    ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
+    searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
+    recipeListFiltered(){},
+  },
 });
 </script>
 
