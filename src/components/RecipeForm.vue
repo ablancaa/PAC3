@@ -111,12 +111,6 @@ export default defineComponent({
                         directions: this.directions,
                         featured: this.featured,
                     });
-                    /*
-                    const data = JSON.stringify(this.recipe)
-                    window.localStorage.setItem('recipe', data);
-                    console.log("Muestra: "+JSON.parse(window.localStorage.getItem('recipe')))
-                    console.log("Titulo: "+this.title);
-                    */
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
