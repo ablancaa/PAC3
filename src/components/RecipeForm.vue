@@ -4,30 +4,33 @@
     <div class="recipe-form">
       <div class="recipe-form-header">
         <h2>Add a new recipe</h2>
-        <button @close="showModal = false">
+        <div id="errores">
+          <p v-for="item in mensajeError" :key="item.id">{{ item }}</p>
+        </div>
+        <button @close="showForm">
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
       <form>
         <div class="recipe-form-item">
           <label for="title">Title</label>
-          <input type="text" id="title" />
+          <input type="text" id="title" v-model="title" />
         </div>
         <div class="recipe-form-item">
           <label for="imageUrl">Image URL</label>
-          <input type="text" id="imageUrl" />
+          <input type="text" id="imageUrl" v-model="imageUrl"/>
         </div>
         <div class="recipe-form-item">
           <label for="servings">Servings</label>
-          <input type="number" id="servings" />
+          <input type="number" id="servings" v-model="servings"/>
         </div>
         <div class="recipe-form-item">
           <label for="time">Time</label>
-          <input type="number" id="time" />
+          <input type="number" id="time" v-model="time"/>
         </div>
         <div class="recipe-form-item">
           <label for="difficulty">Difficulty</label>
-          <select id="difficulty">
+          <select id="difficulty"  v-model="difficulty">
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
@@ -35,14 +38,17 @@
         </div>
         <div class="recipe-form-item">
           <label for="ingredients">Ingredients</label>
-          <input type="text" id="ingredients" />
+          <input type="textarea" id="ingredients" v-model="ingredients"/>
         </div>
         <div class="recipe-form-item">
           <label for="directions">Directions</label>
-          <input type="text" id="directions" />
+          <input type="textarea" id="directions" v-model="directions"/>
         </div>
         <div class="recipe-form-item">
-          <button type="submit">Add Recipe</button>
+         <label for="Featured">Featured</label><input type="checkbox"/>
+         </div>
+        <div class="recipe-form-item">
+          <button type="submit" @click="createRecipe">Add Recipe</button>
         </div>
       </form>
     </div>
@@ -52,13 +58,81 @@
 
 <script>
 import { defineComponent } from "vue";
-
+import { uuid } from 'vue-uuid'; 
 export default defineComponent({
   name: "RecipeForm",
+   data() {
+            return{
+                id: uuid,
+                destacada: '',
+                title: '',
+                imageUrl: '',
+                servings: '',
+                time: '',
+                difficulty: ['Easy', 'Medium' , 'Hard'],
+                ingredients: '',
+                directions: '',
+                submit: '',
+                mensajeError: '',
+                recipe:[],
+            }
+        },
+        mounted(){},
+        methods: {
+            /*  Aquest mètode ha d'executar-se quan es faci el submit del formulari, és a
+            dir, l'usuari faci click al botó Add Recipe, i s'encarregarà de:
+                ○ Comprovar que els camps title, ingredients i directions no estan buits. Si són buits
+                  haureu de mostrar el missatge d'error prèviament descrit i no emetre la recepta.
+                ○ Separar el contingut dels camps ingredients i directions pel caràcter . (punt) i
+                  afegir-los a un array.
+                ○ Crear un objecte (recipe) amb la informació guardada al formulari i els arrays
+                  d'ingredients i directions..
+                ○ Emetre un esdeveniment add-recipe amb l'objecte creat.
+                ○ Esborrar els camps del formulari.*/
+            createRecipe(){
+                if(this.title == '' || this.ingredients == '' || this.directions == '') {
+                    console.log("Titulo vacio!!");
+                    console.log("Ingredientes Vacio!!");
+                    console.log("Indicaciones Vacio!!");
+                    //Pinta en pantalla
+                    var error = document.getElementById("errores");
+                    error.innerHTML += 'El título está vacío <br/>';
+                    error.innerHTML += 'Los ingredientes está vacío <br/>';
+                    error.innerHTML += 'Las indicaciones está vacío <br/>';
+                } else {
+                    this.recipe.push({
+                        id: this.id, 
+                        title: this.title, 
+                        image: this.image, 
+                        servings: this.servings,
+                        time: this.time,
+                        difficulty: this.difficulty,
+                        ingredients: this.ingredients,
+                        directions: this.directions,
+                        featured: this.featured,
+                    });
+                    /*
+                    const data = JSON.stringify(this.recipe)
+                    window.localStorage.setItem('recipe', data);
+                    console.log("Muestra: "+JSON.parse(window.localStorage.getItem('recipe')))
+                    console.log("Titulo: "+this.title);
+                    */
+                }//Fin else
+            },
+            /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
+            el símbol X. S'encarregarà de:
+                ○ Emetre un esdeveniment close-modal */
+            closeForm(){
+                this.$emit('close');
+            }
+        },
 });
 </script>
 
 <style scoped>
+#errores { 
+  color: red;
+}
 .modal-container {
   position: fixed;
   top: 0;
@@ -102,7 +176,8 @@ export default defineComponent({
   margin-bottom: 5px;
 }
 .recipe-form-item input,
-.recipe-form-item select {
+.recipe-form-item select,
+.recipe-form-item textarea  {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
