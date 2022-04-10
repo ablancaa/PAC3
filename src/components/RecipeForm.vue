@@ -1,9 +1,10 @@
 <template>
+
   <div class="modal-container">
     <div class="recipe-form">
       <div class="recipe-form-header">
         <h2>Add a new recipe</h2>
-        <button>
+        <button @close="showModal = false">
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
@@ -46,6 +47,7 @@
       </form>
     </div>
   </div>
+
 </template>
 
 <script>

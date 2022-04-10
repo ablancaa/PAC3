@@ -1,6 +1,6 @@
 <template>
   <div class="recipe" :class="recipe.featured && 'featured'">
-    <button class="delete-recipe">
+    <button class="delete-recipe" @click="deleteRecipe">
       <img src="../assets/delete-button.svg" alt="Delete recipe" />
     </button>
     <h2 class="recipe-title">{{ recipe.title }}</h2>
@@ -50,7 +50,18 @@ export default defineComponent({
       type: Object,
       required: true,
     },
-  },
+    methods: {
+      /*Aquest mètode s'ha d'executar cada vegada que es fes clic al botó amb la X. 
+      Haureu d'emetre els esdeveniments següents: 
+        ○ delete-recipe(id): Esdeveniment encarregat d'informar que s'ha eliminat 
+          una recepta. Indica l'identificador id de la recepta com a paràmetre.*/
+      deleteRecipe () {
+        this.$emit("deleteRecipe", this.recipe.type.id);
+        console.log("Desde Recipe: "+this.recipe.type.id);
+      } 
+
+  },  
+  }
 });
 </script>
 

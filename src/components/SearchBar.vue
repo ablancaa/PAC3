@@ -1,14 +1,17 @@
 <template>
   <div class="search">
     <input type="text" placeholder="Search for a recipe" />
-    <button>Add a new recipe</button>
+    <button @click="showModal = true">Add a new recipe</button>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
-
+//import RecipeForm from "@/components/RecipeForm.vue";
 export default defineComponent({
   name: "SearchBar",
+   components: {
+   //RecipeForm,
+ },
 });
 </script>
 <style scoped>
