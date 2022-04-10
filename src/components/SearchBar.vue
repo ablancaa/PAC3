@@ -29,7 +29,7 @@ export default defineComponent({
   /* Aquest mètode s'encarregarà de buidar l'element input del camp de cerca.
   S’haurà d’executar quan es faci clic al botó “Clear Search”. */
   clearSearch(){
-       document.getElementById("consulta").value = "";
+       this.consulta = document.getElementById("consulta").value = "";
   },
    /*Aquest mètode s'executarà cada vegada que es modifiqui l'element
   input del camp de cerca (cada vegada que es teclegi una lletra). Emetrà un esdeveniment
