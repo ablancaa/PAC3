@@ -79,8 +79,8 @@ export default defineComponent({
   padding: 20px;
   border-radius: 5px;
 }
-.recipe-form-header{
-}
+/*.modal-container.recipe-form-header{
+}*/
 .recipe-form-header button {
   position: absolute;
   top: 10px;
