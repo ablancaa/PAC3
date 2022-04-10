@@ -97,7 +97,7 @@ export default defineComponent({
                     //Pinta en pantalla
                     var error = document.getElementById("errores");
                     error.innerHTML += 'The fields Title, ingredients and directions are required <br/>';
-                    //error.innerHTML += 'Los ingredientes está vacío <br/>';
+                    error.innerHTML += '<br/>';
                     //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
                     this.recipe.push({
