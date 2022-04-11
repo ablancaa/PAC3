@@ -19,6 +19,14 @@ export default defineComponent({
     },
   },
   components: { Recipe },
+  methods: {
+    deleteRecipe(info){
+      
+      this.$emit('deleteRecipe', info);
+     
+      console.log("Desde recipeList: "+ info);
+    }    
+  }
 });
 </script>
 

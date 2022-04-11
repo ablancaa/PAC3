@@ -78,13 +78,16 @@ export default defineComponent({
     },
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
    addRecipe(recipe){
+      let medida = this.recipeList.length
+      this.recipeList.splice(medida, 0, recipe);
       console.log(recipe);
     },
     /*Elimina l'objecte de la llista recipeList l'identificador id és el
     passat per paràmetre.*/
     deleteRecipe(recipeId){
-      console.log("Función deleteRecipe(recipeId){}: "+this.deleteRecipe);
-      console.log(recipeId);
+      this.recipeList.splice(recipeId,1);
+      console.log("Función deleteRecipe(recipeId){}: "+recipeId);
+      //console.log(recipeId);
     },
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(){},
