@@ -80,6 +80,26 @@ export default defineComponent({
             "Cut Onion"
         ],
       },
+      {
+        id: 5,
+        title: "Steak Tartar",
+        imageUrl: "https://placergastronomico.es/wp-content/uploads/2019/03/Portada-Ps.jpg",
+        servings: 4,
+        time: "30 min",
+        difficulty: "Easy",
+        ingredients: [
+            "Fish",
+            "Crab",
+            "Onion",
+            "Potatos",
+            "Oil"
+        ],
+        directions: [
+            "Wash Fish",
+            "Wash Crab",
+            "Cut Onion"
+        ],
+},
     ],
     showModal: false,
   }),
@@ -107,21 +127,19 @@ export default defineComponent({
     passat per paràmetre.*/
     deleteRecipe(recipeId){
       let busqueda = recipeId;
-      console.log("Tenemos el arreglo: ", this.recipeList);
+      console.log("Tenemos el array: ", this.recipeList);
       console.log("Buscando en donde el nombre sea igual a: ", busqueda);
       let indice = this.recipeList.findIndex(receta => receta.id === busqueda);
       console.log("El elemento buscado está en el índice ", indice);
       this.recipeList.splice(indice, 1);
-      let medida = this.recipeList.length;
-      /*console.log("Medida sin borrar: "+medida); 
-      recipeId;
-     */
-     // this.recipeList.splice(recipeId, 1);
-      console.log("Función deleteRecipe(recipeId){}: "+recipeId);
-      console.log("Medida Borrado: "+medida);
+      //let medida = this.recipeList.length;
+      //console.log("Función deleteRecipe(recipeId){}: "+recipeId);
+      //console.log("Medida Borrado: "+medida);
     },
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
-    toggleForm(){},
+    toggleForm(){
+
+    },
     
     /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
     la informació rebuda a l'esdeveniment.*/
