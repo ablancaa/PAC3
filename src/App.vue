@@ -5,8 +5,8 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm"/>
-    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe" @nuevaReceta="addRecipe"/>
-    <recipe-form v-if="showModal" @closeForm="toggleForm"/>
+    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
+    <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
 
