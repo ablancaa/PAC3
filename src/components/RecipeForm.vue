@@ -117,7 +117,7 @@ export default defineComponent({
             el símbol X. S'encarregarà de:
                 ○ Emetre un esdeveniment close-modal */
             closeForm(){
-                this.$emit('close', this.showModal = false);
+                this.$emit('closeForm', this.showModal = false);
                 console.log("Función closeForm(){}: "+ this.showModal);
             }
         },

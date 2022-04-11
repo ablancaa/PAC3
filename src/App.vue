@@ -4,9 +4,9 @@
       <img class="logo" alt="UOC logo" src="./assets/uoc-logo.png" />
       <div class="app-name">Recipe book</div>
     </div>
-    <search-bar />
+    <search-bar @openForm="openForm"/>
     <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
-    <recipe-form v-if="showModal" v-on:@openForm="openForm"/>
+    <recipe-form v-if="showModal" @closeForm="closeForm"/>
   </div>
 </template>
 
@@ -68,6 +68,14 @@ export default defineComponent({
     }
   },
    methods: {
+   openForm(info) {
+     this.showModal = info;
+      console.log("Click event on the button of the children with: " + info)
+    },
+    closeForm(info){
+      this.showModal = info;
+      console.log("Evento que cierra modal: "+ info);
+    },
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
    addRecipe(recipe){
       console.log(recipe);
