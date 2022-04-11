@@ -100,17 +100,19 @@ export default defineComponent({
                     error.innerHTML += '<br/>';
                     //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
-                    this.recipeList.push({
+                    let recipe = [{
                         id: this.id, 
                         title: this.title, 
-                        image: this.image, 
+                        imageUrl: this.imageUrl, 
                         servings: this.servings,
                         time: this.time,
                         difficulty: this.difficulty,
                         ingredients: this.ingredients,
                         directions: this.directions,
                         featured: this.featured,
-                    });
+                    }];
+                    this.$emit('nuevaReceta', recipe);
+                    console.log("Emitida nueva receta: "+recipe);
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb

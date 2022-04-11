@@ -5,7 +5,7 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm"/>
-    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
+    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe" @nuevaReceta="addRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"/>
   </div>
 </template>
@@ -131,9 +131,8 @@ export default defineComponent({
    methods: {
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
    addRecipe(recipe){
-      let medida = this.recipeList.length
-      this.recipeList.splice(medida, 0, recipe);
-      console.log(recipe);
+      this.recipeList.push(recipe);
+      console.log("receta añadida: "+recipe);
     },
     /*Elimina l'objecte de la llista recipeList l'identificador id és el
     passat per paràmetre.*/
