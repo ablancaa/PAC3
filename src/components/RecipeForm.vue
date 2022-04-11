@@ -109,7 +109,7 @@ export default defineComponent({
                   directionsUnaAuno = this.directions.replace(/\s/g, ' .');
                   console.log("Directions Separados: "+directionsUnaAuno);
                     
-                   const recipe = {
+                   let recipe = {
                         id: this.id, 
                         title: this.title, 
                         imageUrl: this.imageUrl, 
@@ -132,7 +132,6 @@ export default defineComponent({
                     console.log(recipe.difficulty);
                     console.log(recipe.ingredients);
                     console.log(recipe.directions);
-                    location.reload();
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
