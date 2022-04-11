@@ -5,9 +5,8 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar />
-    <recipe-list :recipeList="recipeList" />
-    <recipe-form v-if="showModal" @showForm="showForm"/>
-    <p>{{data}}</p>
+    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
+    <recipe-form v-if="showModal" v-on:@openForm="openForm"/>
   </div>
 </template>
 
@@ -69,13 +68,16 @@ export default defineComponent({
     }
   },
    methods: {
-   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList.
-    deleteRecipe(recipeId){},} Elimina l'objecte de la llista recipeList l'identificador id és el
-    passat per paràmetre.*/
-    addRecipe(recipe){
-      console.log.apply(recipe);
+   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
+   addRecipe(recipe){
+      console.log(recipe);
     },
-    
+    /*Elimina l'objecte de la llista recipeList l'identificador id és el
+    passat per paràmetre.*/
+    deleteRecipe(recipeId){
+      console.log("Función deleteRecipe(recipeId){}: "+this.deleteRecipe);
+      console.log(recipeId);
+    },
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(){},
     
@@ -84,9 +86,9 @@ export default defineComponent({
     setSearchTerm(){},
     
     /*Funció que:
-    ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
-    ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
-    searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
+      ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
+      ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
+        searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
     recipeListFiltered(){},
   },
 });
