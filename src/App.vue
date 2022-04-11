@@ -4,9 +4,9 @@
       <img class="logo" alt="UOC logo" src="./assets/uoc-logo.png" />
       <div class="app-name">Recipe book</div>
     </div>
-    <search-bar @openForm="openForm"/>
+    <search-bar @openForm="toggleForm"/>
     <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
-    <recipe-form v-if="showModal" @closeForm="closeForm"/>
+    <recipe-form v-if="showModal" @closeForm="toggleForm"/>
   </div>
 </template>
 
@@ -99,7 +99,27 @@ export default defineComponent({
             "Wash Crab",
             "Cut Onion"
         ],
-},
+      },
+      {
+        id: 6,
+        title: "Tortellini",
+        imageUrl: "https://images-gmi-pmc.edge-generalmills.com/e5230c9a-20c6-484a-ae4d-b32eb7be0ef0.jpg",
+        servings: 4,
+        time: "30 min",
+        difficulty: "Easy",
+        ingredients: [
+            "Fish",
+            "Crab",
+            "Onion",
+            "Potatos",
+            "Oil"
+        ],
+        directions: [
+            "Wash Fish",
+            "Wash Crab",
+            "Cut Onion"
+        ],
+      },
     ],
     showModal: false,
   }),
@@ -109,14 +129,6 @@ export default defineComponent({
     }
   },
    methods: {
-   openForm(info) {
-     this.showModal = info;
-      console.log("Click event on the button of the children with: " + info)
-    },
-    closeForm(info){
-      this.showModal = info;
-      console.log("Evento que cierra modal: "+ info);
-    },
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
    addRecipe(recipe){
       let medida = this.recipeList.length
@@ -137,8 +149,12 @@ export default defineComponent({
       //console.log("Medida Borrado: "+medida);
     },
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
-    toggleForm(){
-
+    toggleForm(info){
+      if (info == true){
+        this.showModal = true;
+      } else {
+        this.showModal = false;
+      }
     },
     
     /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
