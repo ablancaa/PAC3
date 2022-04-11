@@ -63,18 +63,18 @@ export default defineComponent({
   name: "RecipeForm",
    data() {
             return{
-                id: uuid,
+                id: uuid.v1(),
                 destacada: '',
                 title: '',
                 imageUrl: '',
                 servings: '',
                 time: '',
                 difficulty: ['Easy', 'Medium' , 'Hard'],
-                ingredients: '',
-                directions: '',
+                ingredients: [],
+                directions: [],
                 submit: '',
                 mensajeError: '',
-                recipe:[],
+                recipe:{},
             }
         },
         mounted(){},
@@ -96,23 +96,43 @@ export default defineComponent({
                     console.log("Indicaciones Vacio!!");
                     //Pinta en pantalla
                     var error = document.getElementById("errores");
-                    error.innerHTML += 'The fields Title, ingredients and directions are required <br/>';
+                    error.innerHTML += 'The fields Title, Ingredients and Directions are required <br/>';
                     error.innerHTML += '<br/>';
                     //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
-                    let recipe = [{
+                  //Separo ingredientes e indicaciones
+                  let ingredienteUnaAuno = this.ingredients;
+                  ingredienteUnaAuno = this.ingredients.replace(/\s/g, ' .');
+                  console.log("Ingredientes Separados: "+ingredienteUnaAuno);
+                  
+                  let directionsUnaAuno = this.directions;
+                  directionsUnaAuno = this.directions.replace(/\s/g, ' .');
+                  console.log("Directions Separados: "+directionsUnaAuno);
+                    
+                   const recipe = {
                         id: this.id, 
                         title: this.title, 
                         imageUrl: this.imageUrl, 
                         servings: this.servings,
                         time: this.time,
                         difficulty: this.difficulty,
-                        ingredients: this.ingredients,
-                        directions: this.directions,
+                        ingredients: ingredienteUnaAuno,
+                        directions: directionsUnaAuno,
                         featured: this.featured,
-                    }];
+                    };
                     this.$emit('nuevaReceta', recipe);
                     console.log("Emitida nueva receta: "+recipe);
+                    //Datos introducidos
+                    console.log("//DATOS INTRODUCIDOS EN FORMULARIO")
+                    console.log(recipe.id);
+                    console.log(recipe.title);
+                    console.log(recipe.imageUrl);
+                    console.log(recipe.servings);
+                    console.log(recipe.time);
+                    console.log(recipe.difficulty);
+                    console.log(recipe.ingredients);
+                    console.log(recipe.directions);
+                    location.reload();
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb

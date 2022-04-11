@@ -122,18 +122,22 @@ export default defineComponent({
       },
     ],
     showModal: false,
+    listaActualizada: [],
   }),
+  
   computed:{
     datalistcom(){
       return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1);
     }
   },
+
    methods: {
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
-   addRecipe(recipe){
+    addRecipe(recipe){
       this.recipeList.push(recipe);
       console.log("receta añadida: "+recipe);
     },
+
     /*Elimina l'objecte de la llista recipeList l'identificador id és el
     passat per paràmetre.*/
     deleteRecipe(recipeId){
@@ -143,10 +147,8 @@ export default defineComponent({
       let indice = this.recipeList.findIndex(receta => receta.id === busqueda);
       console.log("El elemento buscado está en el índice ", indice);
       this.recipeList.splice(indice, 1);
-      //let medida = this.recipeList.length;
-      //console.log("Función deleteRecipe(recipeId){}: "+recipeId);
-      //console.log("Medida Borrado: "+medida);
     },
+
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(info){
       if (info == true){
