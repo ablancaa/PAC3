@@ -16,6 +16,7 @@ import RecipeForm from "./components/RecipeForm.vue";
 import SearchBar from "./components/SearchBar.vue";
 import { defineComponent } from "vue";
 
+
 export default defineComponent({
   name: "App",
   components: {
@@ -59,12 +60,32 @@ export default defineComponent({
         imageUrl:
           "https://www.unileverfoodsolutions.es/dam/global-ufs/mcos/SPAIN/calcmenu/recipes/ES-recipes/In-Development/american-bbq-beef-salad/main-header.jpg",
       },
+      {
+        id: 4,
+        title: "Zarzuela",
+        imageUrl: "https://www.deliciosi.com/images/1900/1982/zarzuela.jpg",
+        servings: 4,
+        time: "3,2h",
+        difficulty: "Hard",
+        ingredients: [
+            "Fish",
+            "Crab",
+            "Onion",
+            "Potatos",
+            "Oil"
+        ],
+        directions: [
+            "Wash Fish",
+            "Wash Crab",
+            "Cut Onion"
+        ],
+      },
     ],
     showModal: false,
   }),
   computed:{
     datalistcom(){
-      return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1)
+      return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1);
     }
   },
    methods: {
@@ -85,9 +106,19 @@ export default defineComponent({
     /*Elimina l'objecte de la llista recipeList l'identificador id és el
     passat per paràmetre.*/
     deleteRecipe(recipeId){
-      this.recipeList.splice(recipeId,1);
+      let busqueda = recipeId;
+      console.log("Tenemos el arreglo: ", this.recipeList);
+      console.log("Buscando en donde el nombre sea igual a: ", busqueda);
+      let indice = this.recipeList.findIndex(receta => receta.id === busqueda);
+      console.log("El elemento buscado está en el índice ", indice);
+      this.recipeList.splice(indice, 1);
+      let medida = this.recipeList.length;
+      /*console.log("Medida sin borrar: "+medida); 
+      recipeId;
+     */
+     // this.recipeList.splice(recipeId, 1);
       console.log("Función deleteRecipe(recipeId){}: "+recipeId);
-      //console.log(recipeId);
+      console.log("Medida Borrado: "+medida);
     },
     /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(){},
