@@ -11,7 +11,7 @@
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
-      <form id="formulario" @submit.prevent="validarCampos">
+      <form id="formulario">
         <div class="recipe-form-item">
           <label for="title">Title</label>
           <input type="text" id="title" v-model="title" />
@@ -48,7 +48,7 @@
          <label for="Featured">Featured</label><input type="checkbox"/>
          </div>
         <div class="recipe-form-item">
-          <button type="submit" @click="createRecipe">Add Recipe</button>
+          <button type="submit" @submit.prevent="createRecipe">Add Recipe</button>
         </div>
       </form>
     </div>
