@@ -11,7 +11,7 @@
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
-      <form>
+      <form id="formulario" @submit.prevent="validarCampos">
         <div class="recipe-form-item">
           <label for="title">Title</label>
           <input type="text" id="title" v-model="title" />
