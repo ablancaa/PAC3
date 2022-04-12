@@ -132,6 +132,18 @@ export default defineComponent({
                     console.log(recipe.difficulty);
                     console.log(recipe.ingredients);
                     console.log(recipe.directions);
+                    
+                    //Reinicio los campos
+                     this.id = '',
+                     this.title= '',
+                     this.imageUrl = '', 
+                     this.servings = '',
+                     this.time = '',
+                     this.difficulty = '',
+                     ingredienteUnaAuno = '',
+                     directionsUnaAuno = '',
+                     this.featured = '',
+                     closeForm();
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
