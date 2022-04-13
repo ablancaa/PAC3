@@ -5,7 +5,7 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm"/>
-    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
+    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe" @change="oncChange"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
@@ -123,7 +123,16 @@ export default defineComponent({
     ],
     showModal: false,
     listaActualizada: [],
+    search:'',
   }),
+  computed:{
+    recipeListFiltered(){
+        return this.recipeList.filter(receta => {
+        return receta.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+     
+  },
   setup() {
     const recetas = ref ([]);
     provide('recipe', recetas)
@@ -134,14 +143,7 @@ export default defineComponent({
     })
     
   },
-
-  computed:{
-    datalistcom(){
-      return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1);
-    }
-  },
-
-   methods: {
+    methods: {
    /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
     addRecipe(recipe){
       this.recipeList.push(recipe);
@@ -176,7 +178,7 @@ export default defineComponent({
       ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
       ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
         searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-    recipeListFiltered(){},
+    //recipeListFiltered(){},
   },
 });
 </script>
