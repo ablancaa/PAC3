@@ -124,7 +124,7 @@ export default defineComponent({
     showModal: false,
     listaActualizada: [],
   }),
-  
+
   computed:{
     datalistcom(){
       return this.recipeList.filter(item=>item.indexOf(this.consulta)>-1);
