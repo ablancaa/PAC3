@@ -16,9 +16,13 @@ export default defineComponent({
     recipeList: {
       type: Array,
       required: true,
-    },
+    }
   },
   components: { Recipe },
+  setup(){
+
+    
+  },
   methods: {
     deleteRecipe(info){
       
