@@ -11,7 +11,7 @@
           <img src="../assets/close-button.svg" alt="Close modal" />
         </button>
       </div>
-      <form>
+      <form id="formulario" @submit.prevent="createRecipe">
         <div class="recipe-form-item">
           <label for="title">Title</label>
           <input type="text" id="title" v-model="title" />
@@ -48,7 +48,7 @@
          <label for="Featured">Featured</label><input type="checkbox"/>
          </div>
         <div class="recipe-form-item">
-          <button type="submit" @click="createRecipe">Add Recipe</button>
+          <button type="submit" @submit.prevent="createRecipe">Add Recipe</button>
         </div>
       </form>
     </div>
@@ -132,6 +132,18 @@ export default defineComponent({
                     console.log(recipe.difficulty);
                     console.log(recipe.ingredients);
                     console.log(recipe.directions);
+                    
+                    //Reinicio los campos
+                     this.id = '',
+                     this.title= '',
+                     this.imageUrl = '', 
+                     this.servings = '',
+                     this.time = '',
+                     this.difficulty = '',
+                     ingredienteUnaAuno = '',
+                     directionsUnaAuno = '',
+                     this.featured = '',
+                     closeForm();
                 }//Fin else
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
