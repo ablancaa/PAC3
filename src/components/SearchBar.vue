@@ -2,7 +2,7 @@
   <div class="search">
     <div>
     <form @submit.prevent="busqueda"> 
-       <input type="text" id="consulta" v-model.trim="consulta1" placeholder="Search for a recipe" />
+       <input type="text" @change="onChange" @keyup="onChange" id="consulta" v-model.trim="consulta1" placeholder="Search for a recipe" />
        <button v-if="consulta1 != ''" @click="clearSearch">Clear Search</button>
     </form>
     </div>
@@ -12,15 +12,19 @@
 </template>
 <script>
 
-import { defineComponent, inject, ref } from "vue";
+//import { defineComponent, inject, ref } from "vue";
 //import RecipeForm from "@/components/RecipeForm.vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   name: "SearchBar",
    components: {
    //RecipeForm,
   },
-  setup(){
-    const receta = inject('recipe');
+  computed: {
+
+  },
+  setup() {
+    /*const receta = inject('recipe');
     const consulta1 = ref('');
     const busqueda = () => {
       if(consulta1.value === ''){
@@ -40,7 +44,7 @@ export default defineComponent({
       console.log("Objeto creado de busqueda: "+recipe.consulta);
     };
     console.log(receta.value);
-    return {busqueda, consulta1}
+    return {busqueda, consulta1}*/
   },
  data() {
     return {
