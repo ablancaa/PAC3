@@ -14,7 +14,7 @@
 import RecipeList from "./components/RecipeList.vue";
 import RecipeForm from "./components/RecipeForm.vue";
 import SearchBar from "./components/SearchBar.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref, provide, watchEffect } from "vue";
 
 
 export default defineComponent({
@@ -124,6 +124,16 @@ export default defineComponent({
     showModal: false,
     listaActualizada: [],
   }),
+  setup() {
+    const recetas = ref ([]);
+    provide('recipe', recetas)
+    
+    watchEffect(() => {
+      console.log("App: "+recetas.value.lenght);
+      console.log("App: "+recetas.value);
+    })
+    
+  },
 
   computed:{
     datalistcom(){
