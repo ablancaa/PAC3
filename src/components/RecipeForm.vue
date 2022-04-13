@@ -5,7 +5,10 @@
       <div class="recipe-form-header">
         <h2>Add a new recipe</h2>
         <div id="errores">
-          <p>{{ mensajeError }}</p>
+            <p>{{ mensajeError }}</p>
+        </div>
+        <div id="add">
+            <p>{{ mensajeError }}</p>
         </div>
         <button @click="closeForm">
           <img src="../assets/close-button.svg" alt="Close modal" />
@@ -90,17 +93,21 @@ export default defineComponent({
                 ○ Emetre un esdeveniment add-recipe amb l'objecte creat.
                 ○ Esborrar els camps del formulari.*/
             createRecipe(){
+                var error = document.getElementById("errores");
+                var add = document.getElementById("add");
                 if(this.title == '' || this.ingredients == '' || this.directions == '') {
                     console.log("Titulo vacio!!");
                     console.log("Ingredientes Vacio!!");
                     console.log("Indicaciones Vacio!!");
                     //Pinta en pantalla
-                    var error = document.getElementById("errores");
+                    
                     error.innerHTML += 'The fields Title, Ingredients and Directions are required <br/>';
                     error.innerHTML += '<br/>';
+                    add.innerHTML = '';
+                    //error.innerHTML = '<br/>';
                     //error.innerHTML += 'Las indicaciones está vacío <br/>';
                 } else {
-                  //Separo ingredientes e indicaciones
+                  //Separo ingredientes e indicaciones                         
                   let ingredienteUnaAuno = this.ingredients;
                   ingredienteUnaAuno = this.ingredients.replace(/\s/g, ' .');
                   console.log("Ingredientes Separados: "+ingredienteUnaAuno);
@@ -121,8 +128,12 @@ export default defineComponent({
                         featured: this.featured,
                     };
                     this.$emit('nuevaReceta', recipe);
+                    
                     console.log("Emitida nueva receta: "+recipe);
-                    //Datos introducidos
+                    error.innerHTML = '';
+                    add.innerHTML += 'Add recipe <br/>';
+                    add.innerHTML += '<br/>';
+                    //Datos introducidos mostrados por consola
                     console.log("//DATOS INTRODUCIDOS EN FORMULARIO")
                     console.log(recipe.id);
                     console.log(recipe.title);
@@ -134,17 +145,18 @@ export default defineComponent({
                     console.log(recipe.directions);
                     
                     //Reinicio los campos
-                     this.id = '',
-                     this.title= '',
-                     this.imageUrl = '', 
-                     this.servings = '',
-                     this.time = '',
-                     this.difficulty = '',
-                     ingredienteUnaAuno = '',
-                     directionsUnaAuno = '',
-                     this.featured = '',
-                     closeForm();
+                    this.id = '';
+                    this.title= '';
+                    this.imageUrl = ''; 
+                    this.servings = '';
+                    this.time = '';
+                    this.difficulty = '';
+                    this.ingredients = '';
+                    this.directions = '';
+                    this.featured = '';
+                    
                 }//Fin else
+                
             },
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
             el símbol X. S'encarregarà de:
@@ -160,6 +172,9 @@ export default defineComponent({
 <style scoped>
 #errores { 
   color: red;
+}
+#add { 
+  color: greenyellow;
 }
 .modal-container {
   position: fixed;
