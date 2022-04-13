@@ -83,7 +83,7 @@ export default defineComponent({
         mounted(){},
         methods: {
             /*  Aquest mètode ha d'executar-se quan es faci el submit del formulari, és a
-            dir, l'usuari faci click al botó Add Recipe, i s'encarregarà de:
+                dir, l'usuari faci click al botó Add Recipe, i s'encarregarà de:
                 ○ Comprovar que els camps title, ingredients i directions no estan buits. Si són buits
                   haureu de mostrar el missatge d'error prèviament descrit i no emetre la recepta.
                 ○ Separar el contingut dels camps ingredients i directions pel caràcter . (punt) i
@@ -91,22 +91,25 @@ export default defineComponent({
                 ○ Crear un objecte (recipe) amb la informació guardada al formulari i els arrays
                   d'ingredients i directions..
                 ○ Emetre un esdeveniment add-recipe amb l'objecte creat.
-                ○ Esborrar els camps del formulari.*/
-            createRecipe(){
+                ○ Esborrar els camps del formulari.  */
+            createRecipe() {
                 var error = document.getElementById("errores");
                 var add = document.getElementById("add");
+
                 if(this.title == '' || this.ingredients == '' || this.directions == '') {
-                    console.log("Titulo vacio!!");
-                    console.log("Ingredientes Vacio!!");
-                    console.log("Indicaciones Vacio!!");
-                    //Pinta en pantalla
-                    
-                    error.innerHTML += 'The fields Title, Ingredients and Directions are required <br/>';
-                    error.innerHTML += '<br/>';
-                    add.innerHTML = '';
-                    //error.innerHTML = '<br/>';
-                    //error.innerHTML += 'Las indicaciones está vacío <br/>';
+
+                  //Chivatos de campos vacios
+                  console.log("Titulo vacio!!");
+                  console.log("Ingredientes Vacio!!");
+                  console.log("Indicaciones Vacio!!");
+
+                  //Pinta en pantalla
+                  error.innerHTML = 'The fields Title, Ingredients and Directions are required <br/>';
+                  error.innerHTML += '<br/>';
+                  add.innerHTML = '';
+
                 } else {
+
                   //Separo ingredientes e indicaciones                         
                   let ingredienteUnaAuno = this.ingredients;
                   ingredienteUnaAuno = this.ingredients.replace(/\s/g, ' .');
@@ -115,7 +118,7 @@ export default defineComponent({
                   let directionsUnaAuno = this.directions;
                   directionsUnaAuno = this.directions.replace(/\s/g, ' .');
                   console.log("Directions Separados: "+directionsUnaAuno);
-                  
+
                    //Creo el objeto receta para pasar a App 
                    let recipe = {
                         id: this.id, 
@@ -128,14 +131,18 @@ export default defineComponent({
                         directions: directionsUnaAuno,
                         featured: this.featured,
                     };
+
                     //Emite la receta nueva a App
                     this.$emit('nuevaReceta', recipe);
+
                     //Muestra datos de receta por consola
                     console.log("Emitida nueva receta: "+recipe);
+
                     //Pongo el Div de error en blanco
                     error.innerHTML = '';
+
                     //Indico en el Div add que se añade la receta nueva
-                    add.innerHTML += 'Add recipe <br/>';
+                    add.innerHTML = 'Add recipe <br/>';
                     add.innerHTML += '<br/>';
                     
                     //Datos introducidos mostrados por consola
@@ -160,16 +167,17 @@ export default defineComponent({
                     this.directions = '';
                     this.featured = '';
                     
-                }//Fin else
+                }//Fin if/else
                 
-            },
+            },//FIN createRecipe()
+
             /*Aquest mètode s'ha d'executar quan es faci clic al botó que conté el svg amb
             el símbol X. S'encarregarà de:
                 ○ Emetre un esdeveniment close-modal */
-            closeForm(){
+            closeForm() {
                 this.$emit('closeForm', this.showModal = false);
                 console.log("Función closeForm(){}: "+ this.showModal);
-            }
+            }//FIN closeForm()
         },
 });
 </script>
