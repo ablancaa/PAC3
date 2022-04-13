@@ -17,11 +17,22 @@ export default defineComponent({
       type: Array,
       required: true,
     }
-  },
-  components: { Recipe },
-  setup(){
-
+    },
+    components: { Recipe },
     
+    data() {
+        return {
+          buscar:'',
+      }
+    },
+  computed: {
+    items() {
+      console.log();
+      return this.recipeList.filter(item => {
+        return item.title.toLowerCase().includes(this.buscar.toLowerCase());
+        
+      });
+    },
   },
   methods: {
     deleteRecipe(info){
