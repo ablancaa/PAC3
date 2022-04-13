@@ -115,7 +115,8 @@ export default defineComponent({
                   let directionsUnaAuno = this.directions;
                   directionsUnaAuno = this.directions.replace(/\s/g, ' .');
                   console.log("Directions Separados: "+directionsUnaAuno);
-                    
+                  
+                   //Creo el objeto receta para pasar a App 
                    let recipe = {
                         id: this.id, 
                         title: this.title, 
@@ -127,22 +128,26 @@ export default defineComponent({
                         directions: directionsUnaAuno,
                         featured: this.featured,
                     };
+                    //Emite la receta nueva a App
                     this.$emit('nuevaReceta', recipe);
-                    
+                    //Muestra datos de receta por consola
                     console.log("Emitida nueva receta: "+recipe);
+                    //Pongo el Div de error en blanco
                     error.innerHTML = '';
+                    //Indico en el Div add que se añade la receta nueva
                     add.innerHTML += 'Add recipe <br/>';
                     add.innerHTML += '<br/>';
+                    
                     //Datos introducidos mostrados por consola
                     console.log("//DATOS INTRODUCIDOS EN FORMULARIO")
-                    console.log(recipe.id);
-                    console.log(recipe.title);
-                    console.log(recipe.imageUrl);
-                    console.log(recipe.servings);
-                    console.log(recipe.time);
-                    console.log(recipe.difficulty);
-                    console.log(recipe.ingredients);
-                    console.log(recipe.directions);
+                    console.log("Id: "+recipe.id);
+                    console.log("Title: "+recipe.title);
+                    console.log("imageURL: "+recipe.imageUrl);
+                    console.log("Servings: "+recipe.servings);
+                    console.log("Time: "+recipe.time);
+                    console.log("Difficulty: "+recipe.difficulty);
+                    console.log("Igredients: "+recipe.ingredients);
+                    console.log("Directions: "+recipe.directions);
                     
                     //Reinicio los campos
                     this.id = '';
@@ -174,7 +179,7 @@ export default defineComponent({
   color: red;
 }
 #add { 
-  color: greenyellow;
+  color: rgba(19, 199, 88, 0.781);
 }
 .modal-container {
   position: fixed;
