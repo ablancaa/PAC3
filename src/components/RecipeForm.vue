@@ -48,7 +48,8 @@
           <input type="textarea" id="directions" v-model="directions"/>
         </div>
         <div class="recipe-form-item">
-         <label for="Featured">Featured</label><input type="checkbox"/>
+         <label for="checkbox">Featured</label><input type="checkbox" value="true" v-model="featured"/>
+         <!-- <label>{{ featured }}</label> -->
          </div>
         <div class="recipe-form-item">
           <button type="submit" @submit.prevent="createRecipe">Add Recipe</button>
@@ -67,7 +68,6 @@ export default defineComponent({
    data() {
             return{
                 id: uuid.v1(),
-                destacada: '',
                 title: '',
                 imageUrl: '',
                 servings: '',
@@ -75,6 +75,7 @@ export default defineComponent({
                 difficulty: ['Easy', 'Medium' , 'Hard'],
                 ingredients: [],
                 directions: [],
+                featured: '',
                 submit: '',
                 mensajeError: '',
                 recipe:{},
@@ -118,8 +119,14 @@ export default defineComponent({
                   let directionsUnaAuno = this.directions;
                   directionsUnaAuno = this.directions.replace(/\s/g, ' .');
                   console.log("Directions Separados: "+directionsUnaAuno);
-
-                   //Creo el objeto receta para pasar a App 
+                  
+                  if(this.featured==''){
+                    this.featured= false;
+                  } else {
+                    this.featured= true;
+                  }
+                  
+                  //Creo el objeto receta para pasar a App 
                    let recipe = {
                         id: this.id, 
                         title: this.title, 
@@ -155,6 +162,8 @@ export default defineComponent({
                     console.log("Difficulty: "+recipe.difficulty);
                     console.log("Igredients: "+recipe.ingredients);
                     console.log("Directions: "+recipe.directions);
+                    console.log("Featured: "+recipe.featured);
+
                     
                     //Reinicio los campos
                     this.id = '';
