@@ -5,7 +5,7 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm" @newVal="setSearchTerm"/>
-    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
+    <recipe-list :recipeList="listaActualizada" @deleteRecipe="deleteRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
@@ -127,11 +127,15 @@ export default defineComponent({
     filterData: [],  
   }),
   computed:{
-   /* recipeListFiltered(){
-        return this.recipeList.filter(receta => {
-        return receta.title.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }*/
+   /*recipeListFiltered(){
+      if(this.searchTerm.length == 0){
+        console.log(this.listaActualizada);
+        return this.listaActualizada = this.recipeList;
+      } else {
+        console.log(this.listaActualizada);
+        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm));
+      }  
+    },*/
     
    /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
    la informació rebuda a l'esdeveniment.*/
@@ -171,16 +175,17 @@ export default defineComponent({
   la informació rebuda a l'esdeveniment.*/
     setSearchTerm(info){
       this.searchTerm = info;
-      console.log("setSearchInfo(): "+this.searchTerm);     
+      console.log("setSearchInfo(): "+this.searchTerm);  
+      this.recipeListFiltered();   
     },
     
   /*Funció que:
     ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
     ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
       searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-    recipeListFiltered() {
+   recipeListFiltered() {
       console.log("Lista Actualizada en App: ");
-      if(this.searchTerm.length >= 0){
+      if(this.searchTerm.length == 0){
         console.log(this.listaActualizada);
         return this.listaActualizada = this.recipeList;
       } else {

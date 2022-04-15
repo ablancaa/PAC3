@@ -55,7 +55,7 @@ export default defineComponent({
   search(newVal){
   this.$emit('newVal', this.consulta);
   console.log("Letra picada en Search Bar Input");
-  console.log("Consulta: "+ this.consulta);
+  console.log("newVal: "+ this.consulta);
   console.log(newVal);
 },
  
