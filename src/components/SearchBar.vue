@@ -46,17 +46,24 @@ export default defineComponent({
   /* Aquest mètode s'encarregarà de buidar l'element input del camp de cerca.
   S’haurà d’executar quan es faci clic al botó “Clear Search”. */
   clearSearch(){
-       this.consulta = document.getElementById("consulta").value="";
-       console.log("Función clearSearch(){} Campo reseteado");
+    this.consulta ='';
+    this.consulta = document.getElementById("consulta").value="";
+    console.log("Función clearSearch(){} Campo reseteado");
   },
   /*Aquest mètode s'executarà cada vegada que es modifiqui l'element
   input del camp de cerca (cada vegada que es teclegi una lletra). Emetrà un esdeveniment
   'search' amb el contingut del camp de cerca */
   search(newVal){
-  this.$emit('newVal', this.consulta);
-  console.log("Letra picada en Search Bar Input");
-  console.log("newVal: "+ this.consulta);
-  console.log(newVal);
+    console.log("Letra picada en Search Bar Input");
+    //this.$emit('newVal', newVal);
+    if(newVal != ''){
+      this.$emit('newVal', this.consulta);
+      console.log("newVal lleno: "+ this.consulta);
+    } else if (newVal == '') {
+      this.$emit('newVal', this.consulta);
+      console.log("newVal vacio: "+ this.consulta);
+    }
+  //console.log(newVal);
 },
  
  
