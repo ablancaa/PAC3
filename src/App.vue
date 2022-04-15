@@ -185,7 +185,7 @@ export default defineComponent({
       searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
    recipeListFiltered() {
       console.log("Lista Actualizada en App: ");
-      if(this.searchTerm.length == 0){
+      if(this.searchTerm == ''){
         console.log(this.listaActualizada);
         return this.listaActualizada = this.recipeList;
       } else {
