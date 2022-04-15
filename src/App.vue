@@ -4,8 +4,8 @@
       <img class="logo" alt="UOC logo" src="./assets/uoc-logo.png" />
       <div class="app-name">Recipe book</div>
     </div>
-    <search-bar @openForm="toggleForm"/>
-    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe" @change="oncChange"/>
+    <search-bar @openForm="toggleForm" @newVal="setSearchTerm"/>
+    <recipe-list :recipeList="recipeList" @deleteRecipe="deleteRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import RecipeList from "./components/RecipeList.vue";
 import RecipeForm from "./components/RecipeForm.vue";
 import SearchBar from "./components/SearchBar.vue";
-import { defineComponent, ref, provide, watchEffect } from "vue";
+import { defineComponent } from "vue";
 
 
 export default defineComponent({
@@ -123,35 +123,32 @@ export default defineComponent({
     ],
     showModal: false,
     listaActualizada: [],
-    search:'',
+    searchTerm:'',
+    filterData: [],  
   }),
   computed:{
-    recipeListFiltered(){
+   /* recipeListFiltered(){
         return this.recipeList.filter(receta => {
         return receta.title.toLowerCase().includes(this.search.toLowerCase())
       })
-    }
+    }*/
+    
+   /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
+   la informació rebuda a l'esdeveniment.*/
+  /*setSearchTerm(){
+    return this.searchTerm;
+   },*/
      
-  },
-  setup() {
-    const recetas = ref ([]);
-    provide('recipe', recetas)
-    
-    watchEffect(() => {
-      console.log("App: "+recetas.value.lenght);
-      console.log("App: "+recetas.value);
-    })
-    
-  },
-    methods: {
-   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
+  },     
+  methods: {
+  /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
     addRecipe(recipe){
       this.recipeList.push(recipe);
       console.log("receta añadida: "+recipe);
     },
 
-    /*Elimina l'objecte de la llista recipeList l'identificador id és el
-    passat per paràmetre.*/
+  /*Elimina l'objecte de la llista recipeList l'identificador id és el
+  passat per paràmetre.*/
     deleteRecipe(recipeId){
       let busqueda = recipeId;
       console.log("Tenemos el array: ", this.recipeList);
@@ -161,7 +158,7 @@ export default defineComponent({
       this.recipeList.splice(indice, 1);
     },
 
-    /*Modifica l'estat del paràmetre showModal al seu invers.*/
+  /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(info){
       if (info == true){
         this.showModal = true;
@@ -170,15 +167,33 @@ export default defineComponent({
       }
     },
     
-    /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
-    la informació rebuda a l'esdeveniment.*/
-    setSearchTerm(){},
+  /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
+  la informació rebuda a l'esdeveniment.*/
+    setSearchTerm(info){
+      this.searchTerm = info;
+      console.log("setSearchInfo(): "+this.searchTerm);     
+    },
     
-    /*Funció que:
-      ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
-      ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
-        searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-    //recipeListFiltered(){},
+  /*Funció que:
+    ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
+    ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
+      searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
+    recipeListFiltered() {
+      console.log("Lista Actualizada en App: ");
+      if(this.searchTerm.length >= 0){
+        console.log(this.listaActualizada);
+        return this.listaActualizada = this.recipeList;
+      } else {
+        console.log(this.listaActualizada);
+        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm));
+      }
+    },
+  },
+  watch:{
+    /*searchTerm: function(letra){
+      this.searchTerm = this.searchTerm+letra;
+      console.log("SearchTerm: "+this.searchTerm);
+    }*/
   },
 });
 </script>
