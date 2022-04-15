@@ -25,23 +25,13 @@ export default defineComponent({
           buscar:'',
       }
     },
-  computed: {
-    items() {
-      console.log();
-      return this.recipeList.filter(item => {
-        return item.title.toLowerCase().includes(this.buscar.toLowerCase());
-        
-      });
-    },
-  },
-  methods: {
-    deleteRecipe(info){
-      
-      this.$emit('deleteRecipe', info);
-     
-      console.log("Desde recipeList: "+ info);
-    }    
-  }
+    computed: {},
+    methods: {
+      deleteRecipe(info){
+        this.$emit('deleteRecipe', info);
+        console.log("Desde recipeList: "+ info);
+      }    
+    }
 });
 </script>
 
