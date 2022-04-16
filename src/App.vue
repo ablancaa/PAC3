@@ -190,7 +190,8 @@ export default defineComponent({
         return this.listaActualizada = this.recipeList;
       } else {
         console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm.toLowerCase());
+        //return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm.toLowerCase());
+        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.toLowerCase(this.searchTerm).match(this.searchTermnpm));
       }
     },
   },
