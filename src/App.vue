@@ -139,12 +139,6 @@ export default defineComponent({
       return lista;
     },
     
-   /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
-   la informació rebuda a l'esdeveniment.*/
-  /*setSearchTerm(){
-    return this.searchTerm;
-   },*/
-     
   },     
   methods: {
   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
