@@ -5,7 +5,7 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm" @newVal="setSearchTerm"/>
-    <recipe-list :recipeList="listaActualizada" @deleteRecipe="deleteRecipe"/>
+    <recipe-list :recipeList="recipeListFiltered" @deleteRecipe="deleteRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
@@ -126,16 +126,18 @@ export default defineComponent({
     searchTerm:'',
     filterData: [],  
   }),
-  computed:{
-   /*recipeListFiltered(){
-      if(this.searchTerm.length == 0){
-        console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList;
+  computed: {
+    recipeListFiltered() {
+      let lista = [];
+      if(this.searchTerm != ''){
+        lista = this.recipeList.filter(recipe =>
+        recipe.title.toLocaleLowerCase().includes(this.searchTerm.toLowerCase())
+        )
       } else {
-        console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm));
-      }  
-    },*/
+        lista = this.recipeList;
+      }
+      return lista;
+    },
     
    /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
    la informació rebuda a l'esdeveniment.*/
@@ -176,14 +178,14 @@ export default defineComponent({
     setSearchTerm(info){
       this.searchTerm = info;
       console.log("setSearchInfo(): "+this.searchTerm);  
-      this.recipeListFiltered();   
+      //this.recipeListFiltered();   
     },
     
   /*Funció que:
     ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
     ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
       searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-   recipeListFiltered() {
+   /*recipeListFiltered() {
       console.log("Lista Actualizada en App: ");
       if(this.searchTerm == ''){
         console.log(this.listaActualizada);
@@ -191,9 +193,9 @@ export default defineComponent({
       } else {
         console.log(this.listaActualizada);
         //return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm.toLowerCase());
-        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.toLowerCase(this.searchTerm).match(this.searchTermnpm));
+         this.listaActualizada = this.recipeList.filter(recipe => recipe.title.toLowerCase(this.searchTerm).match(this.searchTermnpm));
       }
-    },
+    },*/
   },
   watch:{
     /*searchTerm: function(letra){

@@ -46,6 +46,7 @@ export default defineComponent({
   /* Aquest mètode s'encarregarà de buidar l'element input del camp de cerca.
   S’haurà d’executar quan es faci clic al botó “Clear Search”. */
   clearSearch(){
+    this.input = '';
     this.consulta ='';
     this.consulta = document.getElementById("consulta").value="";
     console.log("Función clearSearch(){} Campo reseteado");
