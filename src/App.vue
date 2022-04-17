@@ -122,21 +122,19 @@ export default defineComponent({
       },
     ],
     showModal: false,
-    listaActualizada: [],
     searchTerm:'',
     filterData: [],  
   }),
   computed: {
     recipeListFiltered() {
-      let lista = [];
+      let listaFiltrada = [];
       if(this.searchTerm != ''){
-        lista = this.recipeList.filter(recipe =>
-        recipe.title.toLocaleLowerCase().includes(this.searchTerm.toLowerCase())
-        )
+        listaFiltrada = this.recipeList.filter(recipe =>
+        recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase())        )
       } else {
-        lista = this.recipeList;
+        listaFiltrada = this.recipeList;
       }
-      return lista;
+      return listaFiltrada;
     },
     
   },     
