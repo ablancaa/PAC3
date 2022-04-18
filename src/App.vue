@@ -86,7 +86,7 @@ export default defineComponent({
         time: "30 min",
         difficulty: "Easy",
         ingredients: [
-            "Fish",
+            "Carne",
             "Crab",
             "Onion",
             "Potatos",
