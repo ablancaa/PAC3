@@ -86,7 +86,7 @@ export default defineComponent({
         time: "30 min",
         difficulty: "Easy",
         ingredients: [
-            "Carne",
+            "carne",
             "Crab",
             "Onion",
             "Potatos",
@@ -130,9 +130,8 @@ export default defineComponent({
       if(this.searchTerm != ''){
         listaFiltrada = this.recipeList.filter(recipe => 
         recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        recipe.ingredients.includes(this.searchTerm.toLocaleLowerCase())
-        ) 
-       
+        recipe.ingredients.includes(this.searchTerm.toLowerCase())
+        )
       } else {
         listaFiltrada = this.recipeList;
       }
