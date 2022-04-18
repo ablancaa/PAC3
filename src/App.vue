@@ -144,22 +144,6 @@ export default defineComponent({
       console.log("setSearchInfo(): "+this.searchTerm);  
       //this.recipeListFiltered();   
     },
-    
-  /*Funció que:
-    ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
-    ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
-      searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-   /*recipeListFiltered() {
-      console.log("Lista Actualizada en App: ");
-      if(this.searchTerm == ''){
-        console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList;
-      } else {
-        console.log(this.listaActualizada);
-        //return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm.toLowerCase());
-         this.listaActualizada = this.recipeList.filter(recipe => recipe.title.toLowerCase(this.searchTerm).match(this.searchTermnpm));
-      }
-    },*/
   },
   watch:{
     /*searchTerm: function(letra){
