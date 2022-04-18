@@ -2,11 +2,10 @@
   <div class="search">
     <div>
     <form @submit.prevent="busqueda"> 
-       <input type="text" id="consulta" v-model="consulta" @keyup="search" placeholder="Search for a recipe" />
+       <input type="text" id="consulta" v-model="consulta" v-bind="input" @keyup="search" placeholder="Search for a recipe" />
        <button v-if="consulta != ''" @click="clearSearch">Clear Search</button>
     </form>
     </div>
-    
     <button @click="showForm">Add a new recipe</button>
   </div>
 </template>
@@ -46,9 +45,6 @@ export default defineComponent({
   /* Aquest mètode s'encarregarà de buidar l'element input del camp de cerca.
   S’haurà d’executar quan es faci clic al botó “Clear Search”. */
   clearSearch(){
-    if(this.consulta != ''){
-      this.consulta ='';
-    }
     this.consulta = document.getElementById("consulta").value="";
     console.log("Función clearSearch(){} Campo reseteado");
   },
