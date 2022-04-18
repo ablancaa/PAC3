@@ -129,10 +129,11 @@ export default defineComponent({
   passat per paràmetre.*/
     deleteRecipe(recipeId){
       let busqueda = recipeId;
-      console.log("Tenemos el array: ", this.recipeList);
-      console.log("Buscando en donde el nombre sea igual a: ", busqueda);
+      console.log("Tenemos el array de recetas: ", this.recipeList);
+      console.log("Buscando en donde el ID de la receta sea igual a: ", busqueda);
       let indice = this.recipeList.findIndex(receta => receta.id === busqueda);
-      console.log("El elemento buscado está en el índice ", indice);
+      console.log("La receta buscada está en el índice ", indice);
+      //Elimina la receta con el id seleccionado
       this.recipeList.splice(indice, 1);
     },
 
