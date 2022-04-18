@@ -15,6 +15,7 @@ import RecipeList from "./components/RecipeList.vue";
 import RecipeForm from "./components/RecipeForm.vue";
 import SearchBar from "./components/SearchBar.vue";
 import { defineComponent } from "vue";
+
 export default defineComponent({
   name: "App",
   components: {
@@ -108,8 +109,8 @@ export default defineComponent({
       
       if(this.searchTerm != ''){
         listaFiltrada = this.recipeList.filter(recipe => 
-        recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        recipe.ingredients.includes(this.searchTerm.toLowerCase())
+          recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          recipe.ingredients.includes(this.searchTerm.toLowerCase()),
         )
       } else {
         listaFiltrada = this.recipeList;
