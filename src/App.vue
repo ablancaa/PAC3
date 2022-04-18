@@ -94,6 +94,10 @@ export default defineComponent({
     filterData: [],  
   }),
   computed: {
+  /* Funció que:
+      ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
+      ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
+        searchTerms forma part del nom de la recepta o dels ingredients a cada recepta. */
     recipeListFiltered() {
       let listaFiltrada = [];
       
@@ -115,7 +119,7 @@ export default defineComponent({
       this.recipeList.push(recipe);
       console.log("receta añadida: "+recipe);
     },
-    
+
   /*Elimina l'objecte de la llista recipeList l'identificador id és el
   passat per paràmetre.*/
     deleteRecipe(recipeId){

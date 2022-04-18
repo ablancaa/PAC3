@@ -53,16 +53,11 @@ export default defineComponent({
   input del camp de cerca (cada vegada que es teclegi una lletra). Emetrà un esdeveniment
   'search' amb el contingut del camp de cerca */
   search(newVal){
-    //newVal=this.consulta;
     console.log("Letra picada en Search Bar Input");
     if(newVal != ''){
       this.$emit('newVal', this.consulta);
-      console.log("newVal lleno: "+ this.consulta);
-    } else if (newVal == '') {
-      this.$emit('newVal', this.consulta);
-      console.log("newVal vacio: "+ this.consulta);
+      console.log("Contenido de newVal: "+ this.consulta);
     }
-  //console.log(newVal);
 },
  
  
