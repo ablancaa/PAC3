@@ -5,7 +5,7 @@
       <div class="app-name">Recipe book</div>
     </div>
     <search-bar @openForm="toggleForm" @newVal="setSearchTerm"/>
-    <recipe-list :recipeList="listaActualizada" @deleteRecipe="deleteRecipe"/>
+    <recipe-list :recipeList="recipeListFiltered" @deleteRecipe="deleteRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
 </template>
@@ -15,8 +15,6 @@ import RecipeList from "./components/RecipeList.vue";
 import RecipeForm from "./components/RecipeForm.vue";
 import SearchBar from "./components/SearchBar.vue";
 import { defineComponent } from "vue";
-
-
 export default defineComponent({
   name: "App",
   components: {
@@ -122,27 +120,22 @@ export default defineComponent({
       },
     ],
     showModal: false,
-    listaActualizada: [],
     searchTerm:'',
     filterData: [],  
   }),
-  computed:{
-   /*recipeListFiltered(){
-      if(this.searchTerm.length == 0){
-        console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList;
+  computed: {
+    recipeListFiltered() {
+      let listaFiltrada = [];
+      
+      if(this.searchTerm != ''){
+        listaFiltrada = this.recipeList.filter(recipe => recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        //ingredientes = this.recipeList.ingredients.filter(ingredient => ingredient[0].toLowerCase().includes(this.searchTerm.toLowerCase()))
       } else {
-        console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm));
-      }  
-    },*/
+        listaFiltrada = this.recipeList;
+      }
+      return listaFiltrada;
+    },
     
-   /*Actualitza un paràmetre searchTerm (de nova creació al component) amb
-   la informació rebuda a l'esdeveniment.*/
-  /*setSearchTerm(){
-    return this.searchTerm;
-   },*/
-     
   },     
   methods: {
   /* Afegeix un objecte de tipus Recipe a l'array d'elements recipeList. */
@@ -150,7 +143,6 @@ export default defineComponent({
       this.recipeList.push(recipe);
       console.log("receta añadida: "+recipe);
     },
-
   /*Elimina l'objecte de la llista recipeList l'identificador id és el
   passat per paràmetre.*/
     deleteRecipe(recipeId){
@@ -161,7 +153,6 @@ export default defineComponent({
       console.log("El elemento buscado está en el índice ", indice);
       this.recipeList.splice(indice, 1);
     },
-
   /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(info){
       if (info == true){
@@ -176,23 +167,24 @@ export default defineComponent({
     setSearchTerm(info){
       this.searchTerm = info;
       console.log("setSearchInfo(): "+this.searchTerm);  
-      this.recipeListFiltered();   
+      //this.recipeListFiltered();   
     },
     
   /*Funció que:
     ○ Retorna el llistat de receptes en el cas que searchTerm estigui buit.
     ○ Retorna la col·lecció de receptes filtrada pels termes de cerca. Heu de buscar si
       searchTerms forma part de la recepta o dels ingredients a cada recepta.*/
-   recipeListFiltered() {
+   /*recipeListFiltered() {
       console.log("Lista Actualizada en App: ");
       if(this.searchTerm == ''){
         console.log(this.listaActualizada);
         return this.listaActualizada = this.recipeList;
       } else {
         console.log(this.listaActualizada);
-        return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm));
+        //return this.listaActualizada = this.recipeList.filter(recipe => recipe.title.match(this.searchTerm.toLowerCase());
+         this.listaActualizada = this.recipeList.filter(recipe => recipe.title.toLowerCase(this.searchTerm).match(this.searchTermnpm));
       }
-    },
+    },*/
   },
   watch:{
     /*searchTerm: function(letra){
@@ -236,3 +228,4 @@ body {
   font-size: 20px;
 }
 </style>
+
