@@ -41,7 +41,7 @@ export default defineComponent({
         time: "15m",
         difficulty: "Medium",
         title: "Pizza",
-        ingredients: ["dough", "tomato sauce", "cheese"],
+        ingredients: ["dough", "tomato sauce", "cheese", "pimiento"],
         directions: ["boil dough", "cook dough", "eat pizza"],
         imageUrl:
           "https://www.saborusa.com/wp-content/uploads/2019/10/Animate-a-disfrutar-una-deliciosa-pizza-de-salchicha-Foto-destacada.png",
@@ -128,8 +128,11 @@ export default defineComponent({
       let listaFiltrada = [];
       
       if(this.searchTerm != ''){
-        listaFiltrada = this.recipeList.filter(recipe => recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
-        //ingredientes = this.recipeList.ingredients.filter(ingredient => ingredient[0].toLowerCase().includes(this.searchTerm.toLowerCase()))
+        listaFiltrada = this.recipeList.filter(recipe => 
+        recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        recipe.ingredients.includes(this.searchTerm.toLocaleLowerCase())
+        ) 
+       
       } else {
         listaFiltrada = this.recipeList;
       }
