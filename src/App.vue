@@ -65,18 +65,8 @@ export default defineComponent({
         servings: 4,
         time: "3,2h",
         difficulty: "Hard",
-        ingredients: [
-            "Fish",
-            "Crab",
-            "Onion",
-            "Potatos",
-            "Oil"
-        ],
-        directions: [
-            "Wash Fish",
-            "Wash Crab",
-            "Cut Onion"
-        ],
+        ingredients: ["fish", "crab", "onion", "potatos", "oil"],
+        directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
       },
       {
         id: 5,
@@ -85,18 +75,8 @@ export default defineComponent({
         servings: 4,
         time: "30 min",
         difficulty: "Easy",
-        ingredients: [
-            "carne",
-            "Crab",
-            "Onion",
-            "Potatos",
-            "Oil"
-        ],
-        directions: [
-            "Wash Fish",
-            "Wash Crab",
-            "Cut Onion"
-        ],
+        ingredients: ["carne", "crab", "onion", "potatos", "oil"],
+        directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
       },
       {
         id: 6,
@@ -105,18 +85,8 @@ export default defineComponent({
         servings: 4,
         time: "30 min",
         difficulty: "Easy",
-        ingredients: [
-            "Fish",
-            "Crab",
-            "Onion",
-            "Potatos",
-            "Oil"
-        ],
-        directions: [
-            "Wash Fish",
-            "Wash Crab",
-            "Cut Onion"
-        ],
+        ingredients: ["fish", "crab", "onion", "potatos", "oil"],
+        directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
       },
     ],
     showModal: false,
