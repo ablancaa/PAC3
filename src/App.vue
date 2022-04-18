@@ -34,6 +34,7 @@ export default defineComponent({
         directions: ["boil noodles", "cook noodles", "eat noodles"],
         imageUrl:
           "https://imagesvc.meredithcorp.io/v3/mm/image?q=60&c=sc&poi=face&w=2000&h=1000&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F21%2F2018%2F02%2F14%2Frecetas-4115-spaghetti-boloesa-facil-2000.jpg",
+        featured: '',
       },
       {
         id: 2,
@@ -57,6 +58,7 @@ export default defineComponent({
         directions: ["cut lettuce", "cut tomato", "cut cheese"],
         imageUrl:
           "https://www.unileverfoodsolutions.es/dam/global-ufs/mcos/SPAIN/calcmenu/recipes/ES-recipes/In-Development/american-bbq-beef-salad/main-header.jpg",
+        featured: '',
       },
       {
         id: 4,
@@ -67,6 +69,7 @@ export default defineComponent({
         difficulty: "Hard",
         ingredients: ["fish", "crab", "onion", "potatos", "oil"],
         directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
+        featured: true,
       },
       {
         id: 5,
@@ -77,6 +80,7 @@ export default defineComponent({
         difficulty: "Easy",
         ingredients: ["carne", "crab", "onion", "potatos", "oil"],
         directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
+        featured: true,
       },
       {
         id: 6,
@@ -87,6 +91,7 @@ export default defineComponent({
         difficulty: "Easy",
         ingredients: ["fish", "crab", "onion", "potatos", "oil"],
         directions: ["Wash Fish", "Wash Crab", "Cut Onion"],
+        featured: '',
       },
     ],
     showModal: false,
