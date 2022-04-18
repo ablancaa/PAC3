@@ -34,7 +34,7 @@ export default defineComponent({
       deleteRecipe(info){
         this.$emit('deleteRecipe', info);
         console.log("Desde recipeList: "+ info);
-      }
+      },
 
     }//FIN METHODS
 
