@@ -115,6 +115,7 @@ export default defineComponent({
       this.recipeList.push(recipe);
       console.log("receta añadida: "+recipe);
     },
+    
   /*Elimina l'objecte de la llista recipeList l'identificador id és el
   passat per paràmetre.*/
     deleteRecipe(recipeId){
@@ -125,6 +126,7 @@ export default defineComponent({
       console.log("El elemento buscado está en el índice ", indice);
       this.recipeList.splice(indice, 1);
     },
+
   /*Modifica l'estat del paràmetre showModal al seu invers.*/
     toggleForm(info){
       if (info == true){
