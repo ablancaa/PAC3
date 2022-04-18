@@ -128,9 +128,10 @@ export default defineComponent({
   computed: {
     recipeListFiltered() {
       let listaFiltrada = [];
+      
       if(this.searchTerm != ''){
-        listaFiltrada = this.recipeList.filter(recipe =>
-        recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase())        )
+        listaFiltrada = this.recipeList.filter(recipe => recipe.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        //ingredientes = this.recipeList.ingredients.filter(ingredient => ingredient[0].toLowerCase().includes(this.searchTerm.toLowerCase()))
       } else {
         listaFiltrada = this.recipeList;
       }
