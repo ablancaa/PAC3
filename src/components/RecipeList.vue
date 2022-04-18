@@ -22,17 +22,23 @@ export default defineComponent({
     
     data() {
         return {
-          buscar:'',
       }
     },
     computed: {},
     methods: {
+    /* Esdeveniment encarregat d'informar que s'ha eliminat una recepta amb
+       identificador id.*/
+    /* Esdeveniment encarregat d'informar que s'ha eliminat una recepta.
+       Aquest esdeveniment es propagarà quan es capturi l'esdeveniment delete-recipe per part
+       del component RecipeCard.vue.*/
       deleteRecipe(info){
         this.$emit('deleteRecipe', info);
         console.log("Desde recipeList: "+ info);
-      }    
-    }
-});
+      }
+
+    }//FIN METHODS
+
+});//FIN EXPORT DEFAULT
 </script>
 
 <style scoped>

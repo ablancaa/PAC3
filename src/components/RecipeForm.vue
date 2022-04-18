@@ -66,7 +66,7 @@ import { uuid } from 'vue-uuid';
 export default defineComponent({
   name: "RecipeForm",
    data() {
-            return{
+            return {
                 id: uuid.v1(),
                 title: '',
                 imageUrl: '',
@@ -121,7 +121,6 @@ export default defineComponent({
                   //directionsUnaAuno = this.directions.search('.');
                   directionsUnaAuno = this.directions.split('.');
                   //directionsUnaAuno = this.directions.split('\n');
-                 
                  
                   console.log("Directions Separados: "+directionsUnaAuno);
                 /* let directionsUnaAuno = this.directions;
