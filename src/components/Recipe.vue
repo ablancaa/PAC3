@@ -1,5 +1,6 @@
 <template>
   <div class="recipe" :class="recipe.featured && 'featured'">
+    <div class="estrella-recipe" v-show="recipe.featured"><img src="@/assets/estrella.png" /></div>
     <button class="delete-recipe" @click="deleteRecipe">
       <img src="../assets/delete-button.svg" alt="Delete recipe" />
     </button>
@@ -124,5 +125,17 @@ export default defineComponent({
 }
 .delete-recipe img {
   width: 20px;
+}
+.estrella-recipe {
+position: absolute;
+top: -30px;
+left:-32px;
+background: transparent;
+border: 0;
+padding: 0;
+cursor: pointer;
+}
+.estrella-recipe img {
+width: 90px;
 }
 </style>
