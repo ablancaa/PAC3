@@ -2,7 +2,7 @@
   <div class="search">
     <div>
     <form @submit.prevent="busqueda"> 
-       <input type="text" id="consulta" v-model="consulta" v-bind="input" @keyup="search" placeholder="Search for a recipe" />
+       <input type="text" id="consulta" v-model="consulta" @keyup="search" placeholder="Search for a recipe" />
        <button v-if="consulta != ''" @click="clearSearch">Clear Search</button>
     </form>
     </div>
