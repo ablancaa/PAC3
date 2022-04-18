@@ -46,6 +46,7 @@ export default defineComponent({
   S’haurà d’executar quan es faci clic al botó “Clear Search”. */
   clearSearch(){
     this.consulta = document.getElementById("consulta").value="";
+    this.$emit('clearSearch', this.consulta);
     console.log("Función clearSearch(){} Campo reseteado");
   },
   /*Aquest mètode s'executarà cada vegada que es modifiqui l'element

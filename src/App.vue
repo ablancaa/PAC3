@@ -4,7 +4,7 @@
       <img class="logo" alt="UOC logo" src="./assets/uoc-logo.png" />
       <div class="app-name">Recipe book</div>
     </div>
-    <search-bar @openForm="toggleForm" @newVal="setSearchTerm"/>
+    <search-bar @openForm="toggleForm" @newVal="setSearchTerm" @clearSearch="setSearchTerm"/>
     <recipe-list :recipeList="recipeListFiltered" @deleteRecipe="deleteRecipe"/>
     <recipe-form v-if="showModal" @closeForm="toggleForm"  @nuevaReceta="addRecipe"/>
   </div>
@@ -138,6 +138,9 @@ export default defineComponent({
   la informació rebuda a l'esdeveniment.*/
     setSearchTerm(info){
       this.searchTerm = info;
+      if (this.searchTerm == ''){
+        this.recipeListFiltered;
+      }
       console.log("setSearchInfo(): "+this.searchTerm);  
       //this.recipeListFiltered();   
     },
